@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slider</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="test.css">
+    
+</head>
+<body>
+    <div id="Slider">
+        
+        <transition name="fade" tag="div">
+            <div v-for="number in [current]" :key='number'>
+                <img :src="images[current]" @mouseover="stop" @mouseout="start" class="image"><!--v-bind: v-on@-->
+                
+                <div class="text">
+                <p class="title">{{titles[current]}}</p>
+                <p class="caption">{{captions[current]}}</p>
+                </div>
+
+                <a @click="prev" @mouseover="stop" @mouseout="start" class="prev">&#10094;</a>
+                <a @click="next" @mouseover="stop" @mouseout="start" class="next">&#10095;</a>
+
+                <div class="indicators">
+                    <span  v-for="number in parseInt([length])" :style="change_css(number)":key='number' class="dot" @mouseover="stop" @mouseout="start" @click='jump(number)'></span>
+                </div>    
+            </div>   
+        </transition>   
+    </div>
+    
+</body>
+<script src = "test.js"></script>
+</html>
