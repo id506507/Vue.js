@@ -26,13 +26,10 @@
             <button class="operator" @click="calc">=</button>
         </div>
     </div>
-    <!-- 
-        length:{{length}}
-        enter:{{enter}}
-        state"{{state}}
-    -->
     <div class="log_area">
         <div class="log_font">Log:</div>
+        <p v-for="log in logs" :key="log">{{log}}</p>
+        
     </div>
 </div>
 </template>
@@ -45,6 +42,7 @@ export default {
             length,
             enter:false,
             state:false,
+            logs:[],
         }
     },
     methods:{
@@ -67,14 +65,12 @@ export default {
         },
         add:function(expression){//expression!=nullNumber.isInteger(this.result)
             if(Number.isInteger(this.result))
-            {
                 this.result='';
-            }
             this.result+=expression+'';
             
-            this.length=this.result.length;
         },
         calc:function(){
+            this.logs.push(this.result+" = "+eval(this.result));
             this.result=eval(this.result);
             this.enter=true;
         }
@@ -84,10 +80,14 @@ export default {
 <style>
 .log_area{
     width: 50%;
-    padding-left:1%;
+    padding-left:5%;
     float: left;
 }
 .log_font{
+    font-size: 200%;
+    float: left;
+}
+.log_area>p{
     font-size: 120%;
 }
 
