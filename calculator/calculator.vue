@@ -74,7 +74,7 @@ export default {
             this.add("/100");
         },
         add:function(expression){//expression!=nullNumber.isInteger(this.result)
-            if(Number.isInteger(this.result))
+            if(Number.isSafeInteger(this.result))
                 this.result='';
             this.result+=expression+'';
             
@@ -86,8 +86,10 @@ export default {
         },
         power:function(){
             //this.result=Math.pow(this.result,2);
-            let power=this.result*this.result;
-            this.add(power);
+            //this.result=Math.pi*this.result;
+            //this.add("*3.14159");
+            this.add("**2");
+
         },
         sin:function(){
             this.result=Math.sin(this.result);
